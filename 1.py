@@ -8,7 +8,7 @@ import csv
 import altair as alt 
 import matplotlib.font_manager as fm
 
-font_path = r"instructional simulation/CN_FONT.ttf"   # 字体路径（相对路径）
+font_path = r"./CN_FONT.ttf"   # 字体路径（相对路径）
 fm.fontManager.addfont(font_path)            # 注册字体
 plt.rcParams['font.family'] = 'Noto Sans SC' # 设置为思源黑体
 plt.rcParams['axes.unicode_minus'] = False   # 避免负号乱码
