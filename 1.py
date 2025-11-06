@@ -1,27 +1,34 @@
+# -*- coding: utf-8 -*-
 import sys
 import os
-import locale
 
-# 设置系统编码
-if sys.platform.startswith('win'):
-    locale.setlocale(locale.LC_ALL, 'chinese')
-else:
-    locale.setlocale(locale.LC_ALL, 'zh_CN.UTF-8')
-
-# 设置标准输出编码
-if sys.stdout.encoding != 'UTF-8':
-    sys.stdout.reconfigure(encoding='utf-8')
-
-
+# 移除有问题的locale设置，改用更兼容的方案
 import streamlit as st
 import matplotlib.pyplot as plt
 import pandas as pd
 import time
 from collections import deque
-import os
 import math
 import csv 
 import altair as alt 
+
+# --------------------------------------------------------------------------
+# 字体设置优化（兼容Streamlit Cloud）
+# --------------------------------------------------------------------------
+
+try:
+    # 方法1：尝试使用系统字体
+    plt.rcParams['font.sans-serif'] = [
+        'DejaVu Sans', 'Arial', 'Liberation Sans', 
+        'Bitstream Vera Sans', 'sans-serif'
+    ]
+    plt.rcParams['axes.unicode_minus'] = False
+    
+    # 方法2：如果上述字体不支持中文，使用图片替代文字
+    # 对于标题等重要文本，我们可以用Streamlit原生组件显示
+    
+except Exception as e:
+    print(f"字体设置警告: {e}")
 
 # --------------------------------------------------------------------------
 # ① 核心生理学模型（保持不变）
