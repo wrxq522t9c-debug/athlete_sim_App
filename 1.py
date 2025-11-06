@@ -1,3 +1,18 @@
+import sys
+import os
+import locale
+
+# 设置系统编码
+if sys.platform.startswith('win'):
+    locale.setlocale(locale.LC_ALL, 'chinese')
+else:
+    locale.setlocale(locale.LC_ALL, 'zh_CN.UTF-8')
+
+# 设置标准输出编码
+if sys.stdout.encoding != 'UTF-8':
+    sys.stdout.reconfigure(encoding='utf-8')
+
+
 import streamlit as st
 import matplotlib.pyplot as plt
 import pandas as pd
